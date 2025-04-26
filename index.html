@@ -2,9 +2,10 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>DNS Pro | Profesyonel DNS Yönetimi</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
             --primary: #6c5ce7;
@@ -29,51 +30,54 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 20px;
+            align-items: flex-start;
+            padding: 10px;
         }
         
         .container {
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             width: 100%;
             max-width: 1000px;
             overflow: hidden;
+            margin: 10px 0;
         }
         
         .header {
             background: linear-gradient(to right, var(--primary), var(--secondary));
             color: white;
-            padding: 25px;
+            padding: 15px;
             text-align: center;
             position: relative;
         }
         
         .header h1 {
-            font-size: 28px;
+            font-size: 22px;
             font-weight: 600;
             margin-bottom: 5px;
         }
         
         .header p {
             opacity: 0.9;
-            font-size: 14px;
+            font-size: 12px;
         }
         
         .nav {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             background: rgba(0,0,0,0.1);
-            padding: 10px;
+            padding: 8px;
         }
         
         .nav a {
             color: white;
             text-decoration: none;
-            margin: 0 15px;
-            font-size: 14px;
+            margin: 5px 8px;
+            font-size: 12px;
             transition: all 0.3s;
+            white-space: nowrap;
         }
         
         .nav a:hover {
@@ -82,18 +86,19 @@
         }
         
         .content {
-            padding: 30px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
         }
         
         .main-content {
             display: flex;
-            gap: 30px;
+            flex-direction: column;
+            gap: 20px;
         }
         
-        .dns-section {
-            flex: 2;
+        .dns-section, .tool-section {
+            flex: 1;
         }
         
         .sidebar {
@@ -102,15 +107,15 @@
         
         .dns-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
         }
         
         .dns-card {
             background: var(--light);
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 10px;
+            padding: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
             border: 2px solid transparent;
@@ -119,8 +124,8 @@
         }
         
         .dns-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
         
         .dns-card.active {
@@ -130,35 +135,35 @@
         
         .dns-card h3 {
             color: var(--dark);
-            margin-bottom: 10px;
-            font-size: 18px;
+            margin-bottom: 8px;
+            font-size: 16px;
         }
         
         .dns-card p {
             color: #636e72;
-            font-size: 14px;
+            font-size: 12px;
             font-family: monospace;
         }
         
         .dns-card .speed {
             display: inline-block;
-            margin-top: 10px;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 12px;
+            margin-top: 8px;
+            padding: 2px 8px;
+            border-radius: 15px;
+            font-size: 10px;
             font-weight: 500;
             background: rgba(0,0,0,0.05);
         }
         
         .dns-card .recommended {
             position: absolute;
-            top: -10px;
-            right: -10px;
+            top: -8px;
+            right: -8px;
             background: var(--success);
             color: white;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 15px;
+            font-size: 9px;
             font-weight: bold;
         }
         
@@ -172,22 +177,24 @@
         
         .action-buttons {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
         }
         
         .btn {
-            flex: 1;
-            padding: 15px;
+            width: 100%;
+            padding: 12px;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
+            font-size: 14px;
         }
         
         .btn-primary {
@@ -209,16 +216,16 @@
         }
         
         .btn i {
-            font-size: 18px;
+            font-size: 16px;
         }
         
         .status {
-            margin-top: 30px;
-            padding: 15px;
-            border-radius: 10px;
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 8px;
             background: rgba(45, 52, 54, 0.05);
             text-align: center;
-            font-size: 14px;
+            font-size: 13px;
             display: none;
         }
         
@@ -239,86 +246,94 @@
         
         .ad-container {
             background: var(--ad-color);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
             text-align: center;
             border: 1px dashed var(--dark);
         }
         
         .ad-container h3 {
             color: var(--dark);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 16px;
         }
         
         .ad-placeholder {
             width: 100%;
-            height: 150px;
+            height: 120px;
             background: rgba(0,0,0,0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
+            border-radius: 6px;
             color: var(--dark);
-            font-size: 14px;
+            font-size: 12px;
         }
         
         .sidebar-section {
             background: var(--light);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
         }
         
         .sidebar-section h3 {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             color: var(--dark);
-            font-size: 16px;
+            font-size: 15px;
             border-bottom: 1px solid rgba(0,0,0,0.1);
-            padding-bottom: 10px;
-        }
-        
-        .sidebar-section p {
-            font-size: 14px;
-            color: #636e72;
-            margin-bottom: 15px;
-        }
-        
-        .sidebar-section ul {
-            list-style: none;
-            font-size: 14px;
-        }
-        
-        .sidebar-section ul li {
-            margin-bottom: 8px;
+            padding-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
         
+        .sidebar-section p {
+            font-size: 13px;
+            color: #636e72;
+            margin-bottom: 12px;
+        }
+        
+        .sidebar-section ul {
+            list-style: none;
+            font-size: 13px;
+        }
+        
+        .sidebar-section ul li {
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
         .sidebar-section ul li i {
             color: var(--primary);
+            font-size: 12px;
         }
         
         .footer {
             text-align: center;
-            padding: 20px;
-            font-size: 12px;
+            padding: 15px;
+            font-size: 11px;
             color: #636e72;
             border-top: 1px solid rgba(0,0,0,0.1);
             display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 8px;
         }
         
         .footer-links {
             display: flex;
-            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
         }
         
         .footer-links a {
             color: #636e72;
             text-decoration: none;
+            font-size: 11px;
         }
         
         .footer-links a:hover {
@@ -336,14 +351,15 @@
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            padding: 15px;
         }
         
         .modal-content {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
-            max-width: 800px;
-            width: 90%;
+            border-radius: 12px;
+            padding: 20px;
+            width: 100%;
+            max-width: 500px;
             max-height: 80vh;
             overflow-y: auto;
         }
@@ -352,29 +368,133 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         .modal-header h2 {
             color: var(--dark);
+            font-size: 18px;
         }
         
         .close-modal {
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 20px;
             cursor: pointer;
             color: var(--dark);
         }
         
         .modal-body {
-            font-size: 14px;
-            line-height: 1.6;
+            font-size: 13px;
+            line-height: 1.5;
         }
         
         .modal-body h3 {
-            margin: 15px 0 10px 0;
+            margin: 12px 0 8px 0;
             color: var(--primary);
+            font-size: 15px;
+        }
+        
+        /* Araç Panelleri */
+        .tool-section {
+            margin-top: 25px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 15px;
+        }
+        
+        .tool-panel {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .tool-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .tool-header h3 {
+            margin-left: 8px;
+            font-size: 16px;
+        }
+        
+        /* Form Elementleri */
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 14px;
+        }
+        
+        /* Test Sonuçları */
+        .test-result {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 12px;
+            font-family: monospace;
+            border: 1px solid rgba(0,0,0,0.1);
+            font-size: 13px;
+        }
+        
+        /* Şifre Üretici Özel */
+        .password-display {
+            background: var(--dark);
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 16px;
+            margin: 12px 0;
+            word-break: break-all;
+            font-family: monospace;
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            height: 8px;
+            background: #dfe6e9;
+            border-radius: 4px;
+            margin: 12px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        /* Checkbox Stili */
+        .checkbox-group {
+            margin: 12px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .checkbox-group label {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        
+        .checkbox-group input {
+            margin-right: 5px;
+        }
+        
+        /* Range Input */
+        input[type="range"] {
+            width: 100%;
+            margin: 10px 0;
         }
         
         @keyframes fadeIn {
@@ -382,36 +502,52 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        @media (max-width: 768px) {
-            .main-content {
-                flex-direction: column;
+        /* Mobil için özel ayarlar */
+        @media (min-width: 576px) {
+            .action-buttons {
+                flex-direction: row;
+            }
+            
+            .btn {
+                font-size: 13px;
+                padding: 10px;
             }
             
             .dns-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             }
         }
         
-        @media (max-width: 480px) {
+        @media (min-width: 768px) {
+            body {
+                align-items: center;
+                padding: 20px;
+            }
+            
+            .main-content {
+                flex-direction: row;
+            }
+            
+            .action-buttons {
+                flex-direction: row;
+            }
+            
+            .btn {
+                padding: 12px;
+                font-size: 14px;
+            }
+            
             .dns-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
             
             .footer {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .footer-links {
-                justify-content: center;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="container">
@@ -492,6 +628,69 @@
                             [VPN REKLAMI BURAYA GELECEK]
                         </div>
                     </div>
+                    
+                    <!-- Ağ Araçları Bölümü -->
+                    <div class="tool-section">
+                        <h2><i class="fas fa-tools"></i> Ağ Araçları</h2>
+                        
+                        <!-- PING TEST -->
+                        <div class="tool-panel">
+                            <div class="tool-header">
+                                <i class="fas fa-network-wired" style="color: var(--primary);"></i>
+                                <h3>Ping Testi</h3>
+                            </div>
+                            <input type="text" id="pingTarget" class="form-input" placeholder="hedef.com veya 8.8.8.8" value="8.8.8.8">
+                            <button onclick="runPingTest()" class="btn btn-primary">
+                                <i class="fas fa-play"></i> Testi Başlat
+                            </button>
+                            <div id="pingResult" class="test-result">
+                                Sonuçlar burada görünecek...
+                            </div>
+                        </div>
+                        
+                        <!-- HIZ TEST -->
+                        <div class="tool-panel">
+                            <div class="tool-header">
+                                <i class="fas fa-tachometer-alt" style="color: var(--primary);"></i>
+                                <h3>İnternet Hız Testi</h3>
+                            </div>
+                            <button onclick="runSpeedTest()" class="btn btn-primary">
+                                <i class="fas fa-play"></i> Testi Başlat
+                            </button>
+                            <div class="progress-container">
+                                <div id="speedProgress" class="progress-bar"></div>
+                            </div>
+                            <div id="speedResult" class="test-result">
+                                <div><strong>İndirme:</strong> <span id="downloadSpeed">0</span> Mbps</div>
+                                <div><strong>Yükleme:</strong> <span id="uploadSpeed">0</span> Mbps</div>
+                                <div><strong>Ping:</strong> <span id="testPing">0</span> ms</div>
+                            </div>
+                        </div>
+                        
+                        <!-- ŞİFRE ÜRETİCİ -->
+                        <div class="tool-panel">
+                            <div class="tool-header">
+                                <i class="fas fa-key" style="color: var(--primary);"></i>
+                                <h3>Şifre Üretici</h3>
+                            </div>
+                            <label>Uzunluk: <span id="passLengthValue">12</span></label>
+                            <input type="range" id="passLength" min="6" max="32" value="12" class="form-input">
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" id="useUpper" checked> Büyük Harf</label>
+                                <label><input type="checkbox" id="useNumbers" checked> Rakamlar</label>
+                                <label><input type="checkbox" id="useSymbols"> Semboller</label>
+                            </div>
+                            <button onclick="generatePassword()" class="btn btn-primary">
+                                <i class="fas fa-sync-alt"></i> Şifre Oluştur
+                            </button>
+                            <div id="generatedPassword" class="password-display">
+                                Şifreniz burada görünecek
+                            </div>
+                            <button onclick="copyToClipboard('generatedPassword')" class="btn btn-secondary">
+                                <i class="fas fa-copy"></i> Kopyala
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="sidebar">
@@ -520,6 +719,20 @@
                             <li><i class="fas fa-exclamation-triangle"></i> Yasal sorumluluk doğurabilir</li>
                             <li><i class="fas fa-user-secret"></i> Gizliliğinizi etkileyebilir</li>
                         </ul>
+                    </div>
+                    
+                    <!-- Hızlı Araçlar -->
+                    <div class="sidebar-section">
+                        <h3><i class="fas fa-bolt"></i> Hızlı Erişim</h3>
+                        <button onclick="scrollToTool('ping')" class="btn btn-secondary" style="margin-bottom: 8px; width: 100%;">
+                            <i class="fas fa-network-wired"></i> Ping Test
+                        </button>
+                        <button onclick="scrollToTool('speed')" class="btn btn-secondary" style="margin-bottom: 8px; width: 100%;">
+                            <i class="fas fa-tachometer-alt"></i> Hız Testi
+                        </button>
+                        <button onclick="scrollToTool('password')" class="btn btn-secondary" style="width: 100%;">
+                            <i class="fas fa-key"></i> Şifre Üretici
+                        </button>
                     </div>
                 </div>
             </div>
@@ -607,12 +820,12 @@
                 <button class="close-modal" onclick="closeModal('customDnsModal')">&times;</button>
             </div>
             <div class="modal-body">
-                <div style="margin-bottom: 20px;">
+                <div style="margin-bottom: 15px;">
                     <label for="primaryDns">Birincil DNS Adresi:</label>
                     <input type="text" id="primaryDns" placeholder="Örnek: 8.8.8.8" style="width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc;">
                 </div>
                 
-                <div style="margin-bottom: 20px;">
+                <div style="margin-bottom: 15px;">
                     <label for="secondaryDns">İkincil DNS Adresi (Opsiyonel):</label>
                     <input type="text" id="secondaryDns" placeholder="Örnek: 8.8.4.4" style="width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc;">
                 </div>
@@ -772,10 +985,12 @@
         // Modal açma/kapatma
         function openModal(modalId) {
             document.getElementById(modalId).style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
         
         function closeModal(modalId) {
             document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
         
         // Özel DNS modalını aç
@@ -813,204 +1028,6 @@
             showStatus('Özel DNS ayarlandı. Uygulamak için "DNS\'i Değiştir" butonuna basın.', 'success');
         }
         
-        // Sayfa yüklendiğinde Google DNS'yi seçili yap
-        window.onload = function() {
-            selectDNS('google');
-        };
-    </script>
-</body>
-<head>
-    <!-- Meta etiketleri aynı -->
-    <style>
-        /* ORİJİNAL TASARIMLA UYUMLU EKLENTİLER */
-        
-        /* Araç Panelleri */
-        .tool-section {
-            margin-top: 40px;
-            border-top: 1px solid rgba(0,0,0,0.1);
-            padding-top: 20px;
-        }
-        
-        .tool-panel {
-            background: var(--light);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(0,0,0,0.1);
-        }
-        
-        .tool-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .tool-header h3 {
-            margin-left: 10px;
-        }
-        
-        /* Form Elementleri */
-        .form-input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            margin-bottom: 15px;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        /* Test Sonuçları */
-        .test-result {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-            font-family: monospace;
-            border: 1px solid rgba(0,0,0,0.1);
-        }
-        
-        /* Şifre Üretici Özel */
-        .password-display {
-            background: var(--dark);
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 18px;
-            margin: 15px 0;
-            word-break: break-all;
-            font-family: monospace;
-        }
-        
-        /* Progress Bar */
-        .progress-container {
-            height: 10px;
-            background: #dfe6e9;
-            border-radius: 5px;
-            margin: 15px 0;
-            overflow: hidden;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background: var(--primary);
-            width: 0%;
-            transition: width 0.3s;
-        }
-        
-        /* Checkbox Stili */
-        .checkbox-group {
-            margin: 15px 0;
-        }
-        
-        .checkbox-group label {
-            display: inline-flex;
-            align-items: center;
-            margin-right: 15px;
-            cursor: pointer;
-        }
-        
-        .checkbox-group input {
-            margin-right: 5px;
-        }
-    </style>
-</head>
-<body>
-    <!-- Container ve Header aynı -->
-
-    <div class="content">
-        <div class="main-content">
-            <!-- DNS Bölümü Aynı -->
-            
-            <!-- YENİ ARAÇLAR BÖLÜMÜ -->
-            <div class="dns-section tool-section">
-                <h2><i class="fas fa-tools"></i> Ağ Araçları</h2>
-                
-                <!-- PING TEST -->
-                <div class="tool-panel">
-                    <div class="tool-header">
-                        <i class="fas fa-network-wired" style="color: var(--primary);"></i>
-                        <h3>Ping Testi</h3>
-                    </div>
-                    <input type="text" id="pingTarget" class="form-input" placeholder="hedef.com veya 8.8.8.8" value="8.8.8.8">
-                    <button onclick="runPingTest()" class="btn btn-primary">
-                        <i class="fas fa-play"></i> Testi Başlat
-                    </button>
-                    <div id="pingResult" class="test-result">
-                        Sonuçlar burada görünecek...
-                    </div>
-                </div>
-                
-                <!-- HIZ TEST -->
-                <div class="tool-panel">
-                    <div class="tool-header">
-                        <i class="fas fa-tachometer-alt" style="color: var(--primary);"></i>
-                        <h3>İnternet Hız Testi</h3>
-                    </div>
-                    <button onclick="runSpeedTest()" class="btn btn-primary">
-                        <i class="fas fa-play"></i> Testi Başlat
-                    </button>
-                    <div class="progress-container">
-                        <div id="speedProgress" class="progress-bar"></div>
-                    </div>
-                    <div id="speedResult" class="test-result">
-                        <div><strong>İndirme:</strong> <span id="downloadSpeed">0</span> Mbps</div>
-                        <div><strong>Yükleme:</strong> <span id="uploadSpeed">0</span> Mbps</div>
-                        <div><strong>Ping:</strong> <span id="testPing">0</span> ms</div>
-                    </div>
-                </div>
-                
-                <!-- ŞİFRE ÜRETİCİ -->
-                <div class="tool-panel">
-                    <div class="tool-header">
-                        <i class="fas fa-key" style="color: var(--primary);"></i>
-                        <h3>Şifre Üretici</h3>
-                    </div>
-                    <label>Uzunluk: <span id="passLengthValue">12</span></label>
-                    <input type="range" id="passLength" min="6" max="32" value="12" class="form-input">
-                    <div class="checkbox-group">
-                        <label><input type="checkbox" id="useUpper" checked> Büyük Harf</label>
-                        <label><input type="checkbox" id="useNumbers" checked> Rakamlar</label>
-                        <label><input type="checkbox" id="useSymbols"> Semboller</label>
-                    </div>
-                    <button onclick="generatePassword()" class="btn btn-primary">
-                        <i class="fas fa-sync-alt"></i> Şifre Oluştur
-                    </button>
-                    <div id="generatedPassword" class="password-display">
-                        Şifreniz burada görünecek
-                    </div>
-                    <button onclick="copyToClipboard('generatedPassword')" class="btn btn-secondary">
-                        <i class="fas fa-copy"></i> Kopyala
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Premium VPN Bölümü Aynı -->
-        </div>
-        
-        <!-- SIDEBAR (Orijinal yapı korundu) -->
-        <div class="sidebar">
-            <!-- ... Orijinal sidebar içeriği ... -->
-            
-            <!-- Hızlı Araçlar -->
-            <div class="sidebar-section">
-                <h3><i class="fas fa-bolt"></i> Hızlı Erişim</h3>
-                <button onclick="scrollToTool('ping')" class="btn btn-secondary" style="margin-bottom: 8px; width: 100%;">
-                    <i class="fas fa-network-wired"></i> Ping Test
-                </button>
-                <button onclick="scrollToTool('speed')" class="btn btn-secondary" style="margin-bottom: 8px; width: 100%;">
-                    <i class="fas fa-tachometer-alt"></i> Hız Testi
-                </button>
-                <button onclick="scrollToTool('password')" class="btn btn-secondary" style="width: 100%;">
-                    <i class="fas fa-key"></i> Şifre Üretici
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer ve Modaller Aynı -->
-
-    <script>
         // PING TEST FONKSİYONU (Simüle)
         function runPingTest() {
             const target = document.getElementById('pingTarget').value || '8.8.8.8';
@@ -1123,7 +1140,10 @@
             document.getElementById('passLengthValue').textContent = this.value;
         });
         
-        // Önceki fonksiyonlar aynen korundu...
+        // Sayfa yüklendiğinde Google DNS'yi seçili yap
+        window.onload = function() {
+            selectDNS('google');
+        };
     </script>
 </body>
 </html>
